@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from "react-native";
 
-export default function HeaderCiudad({ city }: { city: string }) {
+export default function EncabezadoCiudad({ city }: { city: string }) {
   return (
     <Text testID="header-city" style={styles.text}>
       {city}
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 4,
     textAlign: "center",
-    marginTop: 10,
+    marginTop: 50,
     color: "#111",
   },
 });

@@ -73,7 +73,7 @@ setWeatherData([
   },
   parseDia(forecast.forecast.forecastday[1], getFechaLabel(1)),
 ]);
-console.log("HOY SETEADO:", Math.round(current.temp_c)); // <-- acá
+console.log("HOY SETEADO:", Math.round(current.temp_c)); 
 
       } catch (e) {
         setError("No se pudo cargar el clima");

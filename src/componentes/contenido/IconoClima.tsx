@@ -5,11 +5,12 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     marginVertical: 20,
+    marginTop: 50,
   },
 });
 
 export default function IconoClima({ condition }: { condition: string }) {
-  const size = 90;
+  const size = 190;
   const stroke = 1.5;
 
   return (

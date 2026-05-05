@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from 'react-native';
+import { Droplets, Gauge, Wind } from 'lucide-react-native';
 
 export default function MetricasSecundarias({
   humidity,
@@ -9,35 +10,46 @@ export default function MetricasSecundarias({
   pressure: number;
   wind: number;
 }) {
- return (
+  return (
     <View style={styles.container}>
+
       <View testID="metric-item" style={styles.metric}>
-  <Droplets testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
-  <Text testID="metric-value">{humidity}<Text style={styles.unit}>%</Text></Text>
-</View>
+        <Droplets testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
+        <Text testID="metric-value">
+          {humidity}
+          <Text style={styles.metric}>%</Text>
+        </Text>
+      </View>
 
-<View testID="metric-item" style={styles.metric}>
-  <Gauge testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
-  <Text testID="metric-value">{pressure}<Text style={styles.unit}> hPa</Text></Text>
-</View>
+      <View testID="metric-item" style={styles.metric}>
+        <Gauge testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
+        <Text testID="metric-value">
+          {pressure}
+          <Text style={styles.metric}> hPa</Text>
+        </Text>
+      </View>
 
-<View testID="metric-item" style={styles.metric}>
-  <Wind testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
-  <Text testID="metric-value">{wind}<Text style={styles.unit}> m/s</Text></Text>
-</View>
+      <View testID="metric-item" style={styles.metric}>
+        <Wind testID="metric-icon" size={18} strokeWidth={1.5} color="#555" />
+        <Text testID="metric-value">
+          {wind}
+          <Text style={styles.metric}> m/s</Text>
+        </Text>
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 10,
     gap: 8,
   },
   metric: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   icon: {

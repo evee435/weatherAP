@@ -16,5 +16,6 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     color: "#111",
     letterSpacing: -2,
+    marginTop: 30,
   },
 });

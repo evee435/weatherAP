@@ -1,21 +1,19 @@
-import { View, StyleSheet, Text, StatusBar} from "react-native";
+import {Text} from "react-native";
 import { useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
-
-import HeaderCiudad from "../src/componentes/contenido/HeaderCiudad";
+import EncabezadoCiudad from "../src/componentes/contenido/EncabezadoCiudad";
 import NavegacionDias from "../src/componentes/contenido/NavegacionDias";
 import IconoClima from "../src/componentes/contenido/IconoClima";
 import MetricasSecundarias from "../src/componentes/contenido/MetricasSecundarias";
 import TemperaturaPrincipal from "../src/componentes/contenido/TemperaturaPrincipal";
 import TemperaturasMinMax from "../src/componentes/contenido/TemperaturasMinMax";
 import {useWeather} from "../src/hooks/useWeather";
+import {SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function App() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const { weatherData, loading, error, ciudad } = useWeather();
 
-  <HeaderCiudad city={ciudad.toUpperCase()} />
 
    if (loading) return <Text>Cargando...</Text>;
    if (error) return <Text>{error}</Text>;
@@ -38,10 +36,7 @@ export default function App() {
 
   return (
     
-    <LinearGradient colors={["#e8edf2", "#f5f7f9", "#ffffff"]} style={{ flex: 1 }}>
-          <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
-
-       <View testID="screen-weather" style={styles.container}>
+    <SafeAreaView style={{ flex: 1, position: 'relative' }}>
 
       <NavegacionDias
         day={currentDay.day}
@@ -49,7 +44,7 @@ export default function App() {
         onNext={handleNext}
       />
 
-      <HeaderCiudad city={ciudad.toUpperCase()} />
+      <EncabezadoCiudad city={ciudad.toUpperCase()} />
 
       <IconoClima condition={currentDay.condition} />
 
@@ -66,17 +61,6 @@ export default function App() {
         max={currentDay.max}
       />
 
-    </View>
-    </LinearGradient>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 50,
-    paddingBottom: 30,
-  },
-});
