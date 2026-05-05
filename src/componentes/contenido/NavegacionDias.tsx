@@ -10,14 +10,14 @@ export default function NavegacionDias({
 }) {
   return (
     <View testID="day-navigation" style={styles.container}>
-      <Pressable testID="button-prev-day" onPress={onPrev}>
-        <ChevronLeft size={20} strokeWidth={1.5} color="#111" />
-      </Pressable>
-      <Text style={styles.day}>{day}</Text>
-      <Pressable testID="button-next-day" onPress={onNext}>
-        <ChevronRight size={20} strokeWidth={1.5} color="#111" />
-      </Pressable>
-    </View>
+  <Pressable testID="button-prev-day" onPress={onPrev}>
+    <ChevronLeft size={20} strokeWidth={1.5} color="#111" />
+  </Pressable>
+  <Text testID="navigation-current-day" style={styles.day}>{day}</Text>
+  <Pressable testID="button-next-day" onPress={onNext}>
+    <ChevronRight size={20} strokeWidth={1.5} color="#111" />
+  </Pressable>
+</View>
   );
 }
 
