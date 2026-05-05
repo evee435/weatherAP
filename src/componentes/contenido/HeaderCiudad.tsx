@@ -10,10 +10,11 @@ export default function HeaderCiudad({ city }: { city: string }) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
-  fontWeight: "800",
-  letterSpacing: 2,
-  textAlign: "center",
-  marginTop: 10,
+    fontSize: 22,
+    fontWeight: "700",
+    letterSpacing: 4,
+    textAlign: "center",
+    marginTop: 10,
+    color: "#111",
   },
 });

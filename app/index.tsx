@@ -36,32 +36,33 @@ export default function App() {
   };
 
   return (
-    <LinearGradient colors={["#dfe9f3", "#ffffff"]} style={{ flex: 1 }}>
-      <View testID="screen-weather" style={styles.container}>
-        
-        <HeaderCiudad city="Buenos Aires" />
+    <LinearGradient colors={["#e8edf2", "#f5f7f9", "#ffffff"]} style={{ flex: 1 }}>
+       <View testID="screen-weather" style={styles.container}>
 
-        <NavegacionDias
-          day={currentDay.day}
-          onPrev={handlePrev}
-          onNext={handleNext}
-        />
+      <NavegacionDias
+        day={currentDay.day}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
 
-        <IconoClima condition={currentDay.condition} />
+      <HeaderCiudad city={ciudad.toUpperCase()} />
 
-        <MetricasSecundarias
-          humidity={currentDay.humidity}
-          pressure={currentDay.pressure}
-          wind={currentDay.wind}
-        />
+      <IconoClima condition={currentDay.condition} />
 
-        <TemperaturaPrincipal temp={currentDay.temp} />
+      <MetricasSecundarias
+        humidity={currentDay.humidity}
+        pressure={currentDay.pressure}
+        wind={currentDay.wind}
+      />
 
-        <TemperaturasMinMax
-          min={currentDay.min}
-          max={currentDay.max}
-        />
-      </View>
+      <TemperaturaPrincipal temp={currentDay.temp} />
+
+      <TemperaturasMinMax
+        min={currentDay.min}
+        max={currentDay.max}
+      />
+
+    </View>
     </LinearGradient>
   );
 }
@@ -71,5 +72,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 60,
   },
 });

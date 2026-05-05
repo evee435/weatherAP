@@ -9,11 +9,19 @@ function getFecha(offsetDias: number) {
   return d.toISOString().split("T")[0];
 }
 
+function getFechaLabel(offsetDias: number) {
+  const d = new Date();
+  d.setDate(d.getDate() + offsetDias);
+  return d.toLocaleDateString("es-AR", { day: "numeric", month: "numeric" }); // "4/05"
+}
+
 export function useWeather() {
   const [weatherData, setWeatherData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [ciudad, setCiudad] = useState("Mi ubicación");
+
+
 
   useEffect(() => {
     async function fetchAll() {
@@ -35,22 +43,23 @@ export function useWeather() {
         ]);
 
         setCiudad(forecast.location.name);
+        const horaActual = forecast.current.temp_c;
 
-        const parseDia = (day: any, label: string) => ({
-          day: label,
-          temp: Math.round(day.day.avgtemp_c),
-          min: Math.round(day.day.mintemp_c),
-          max: Math.round(day.day.maxtemp_c),
-          humidity: day.day.avghumidity,
-          pressure: day.hour[12]?.pressure_mb ?? 1013,
-          wind: Math.round(day.day.maxwind_kph / 3.6),
-          condition: mapCondition(day.day.condition.code),
-        });
+        const parseDia = (day: any, label: string, tempOverride?: number) => ({
+  day: label,
+  temp: Math.round(tempOverride ?? day.day.avgtemp_c), 
+  min: Math.round(day.day.mintemp_c),
+  max: Math.round(day.day.maxtemp_c),
+  humidity: day.day.avghumidity,
+  pressure: day.hour[12]?.pressure_mb ?? 1013,
+  wind: Math.round(day.day.maxwind_kph / 3.6),
+  condition: mapCondition(day.day.condition.code),
+});
 
         setWeatherData([
-          parseDia(history.forecast.forecastday[0], "Ayer"),
-          parseDia(forecast.forecast.forecastday[0], "Hoy"),
-          parseDia(forecast.forecast.forecastday[1], "Mañana"),
+          parseDia(history.forecast.forecastday[0], getFechaLabel(-1)),
+          parseDia(forecast.forecast.forecastday[0], getFechaLabel(0), horaActual),
+          parseDia(forecast.forecast.forecastday[1], getFechaLabel(1)),
         ]);
       } catch (e) {
         setError("No se pudo cargar el clima");
