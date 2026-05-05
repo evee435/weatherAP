@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text} from "react-native";
+import { View, StyleSheet, Text, StatusBar} from "react-native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -12,7 +12,7 @@ import {useWeather} from "../src/hooks/useWeather";
 
 
 export default function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
   const { weatherData, loading, error, ciudad } = useWeather();
 
   <HeaderCiudad city={ciudad.toUpperCase()} />
@@ -22,6 +22,7 @@ export default function App() {
    if (!weatherData.length) return null;
 
   const currentDay = weatherData[currentIndex];
+  console.log("CURRENT DAY:", currentDay);
 
   const handleNext = () => {
     if (currentIndex < weatherData.length - 1) {
@@ -36,7 +37,10 @@ export default function App() {
   };
 
   return (
+    
     <LinearGradient colors={["#e8edf2", "#f5f7f9", "#ffffff"]} style={{ flex: 1 }}>
+          <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
+
        <View testID="screen-weather" style={styles.container}>
 
       <NavegacionDias
@@ -72,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 60,
+    paddingTop: 50,
+    paddingBottom: 30,
   },
 });
